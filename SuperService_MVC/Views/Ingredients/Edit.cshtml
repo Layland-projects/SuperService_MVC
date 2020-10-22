@@ -2,7 +2,29 @@
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var modelProperties = Model.GetType().GetProperties().Where(x => x.CanWrite).OrderBy(x => x.Name).ToList();
+    int i = 0;
 }
 
 <h1>@Model.Name</h1>
+<form>
+
+    <!--Code to generate you fields for the objects properties-->
+    @*@for (; i < modelProperties.Count -1; i += 2)
+    {
+        <div class="row">
+            <label class="col-sm-1">@modelProperties[i].Name</label>
+            <input class="col-sm-5" type="text" placeholder="@modelProperties[i].GetValue(Model)" />
+            <label class="col-sm-1">@modelProperties[i + 1].Name</label>
+            <input class="col-sm-5" type="text" placeholder="@modelProperties[i + 1].GetValue(Model)" />
+        </div>
+    }
+    @if (modelProperties.Count % 2 != 0)
+    {
+        <div class="row">
+            <label class="col-sm-1">@modelProperties.Last().Name</label>
+            <input class="col-sm-5" type="text" placeholder="@modelProperties.Last().GetValue(Model)" />
+        </div>
+    }*@
+</form>
 
