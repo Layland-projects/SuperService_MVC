@@ -1,0 +1,12 @@
+﻿hr.solid {
+    border-top: 3px solid #343a40;
+}
+a {
+    color: #343a40;
+}
+a:hover {
+    color: #5f6871;
+}
+.nav-item.active {
+    background-color: #711d85;
+}

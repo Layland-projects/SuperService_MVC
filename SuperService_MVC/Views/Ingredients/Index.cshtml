@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SuperService_MVC.Models.IngredientViewModel>
+@{
+    ViewData["Title"] = "Ingredients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string GetIconCSSForIngredient(IngredientViewModel vm)
+    {
+        return vm.IsInStock ? "fa-check-circle" : "fa-times-circle";
+    }
+}
+<head>
+    <script src="~/js/Scripts/Ingredients/index.js"></script>
+</head>
+
+<h1 class="row">Ingredients</h1>
+<div class="row">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th class="text-center"><div>ID</div></th>
+                <th class="text-center"><div>Name</div></th>
+                <th class="text-center"><div>In Stock</div></th>
+                <th class="text-center"><div>Actions</div></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ingredient in Model)
+            {
+                <tr>
+                    <td><div>@ingredient.IngredientID</div></td>
+                    <td><div>@ingredient.Name</div></td>
+                    <td><div class="text-center"><i class="fas @GetIconCSSForIngredient(ingredient)"></i></div></td>
+                    <td class="text-right">
+                        <a asp-action="Edit" asp-route-id="@ingredient.IngredientID">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a>
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
