@@ -2,29 +2,62 @@
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var nameEdit = false;
     var modelProperties = Model.GetType().GetProperties().Where(x => x.CanWrite).OrderBy(x => x.Name).ToList();
-    int i = 0;
-}
-
-<h1>@Model.Name</h1>
-<form>
-
-    <!--Code to generate you fields for the objects properties-->
-    @*@for (; i < modelProperties.Count -1; i += 2)
+    var modelBlacklist = new[] { "Name" };
+    foreach (var item in modelBlacklist)
     {
-        <div class="row">
-            <label class="col-sm-1">@modelProperties[i].Name</label>
-            <input class="col-sm-5" type="text" placeholder="@modelProperties[i].GetValue(Model)" />
-            <label class="col-sm-1">@modelProperties[i + 1].Name</label>
-            <input class="col-sm-5" type="text" placeholder="@modelProperties[i + 1].GetValue(Model)" />
-        </div>
+        modelProperties.Remove(modelProperties.Where(x => x.Name == item).FirstOrDefault());
     }
-    @if (modelProperties.Count % 2 != 0)
-    {
-        <div class="row">
-            <label class="col-sm-1">@modelProperties.Last().Name</label>
-            <input class="col-sm-5" type="text" placeholder="@modelProperties.Last().GetValue(Model)" />
+}
+<head>
+    <script src="~/js/Scripts/Ingredients/Edit.js"></script>
+</head>
+<form asp-action="UpdateRecord">
+    <div class="row">
+        <h1 id="HeaderDisplay">@Model.Name</h1>
+        <h2 id="HeaderEditContainer" hidden="hidden">
+            @Html.TextBoxFor(x => x.Name, new { @id = "HeaderEdit", @class = "pb-0 mb-0", @name = "test" })
+        </h2>
+        <div class="">
+            <a class="" id="HeaderToggle" href="#">
+                <i class="fas fa-pencil-alt align-bottom mt-4 ml-1"></i>
+            </a>
         </div>
-    }*@
+    </div>
+    @Html.HiddenFor(x => x.IngredientID)
+    <div class="row justify-content-between">
+        <label class="col-sm-5">Calories (kcal)</label>
+        <label class="col-sm-5">Carbohydrates (g)</label>
+    </div>
+    <div class="row justify-content-between">
+        @Html.TextBoxFor(x => x.Calories, new { @class = "col-sm-5 pl-1", @placeholder = $"{Model.Calories}" })
+        @Html.TextBoxFor(x => x.Carbohydrates, new { @class = "col-sm-5 pl-1", @placeholder = $"{Model.Carbohydrates}" })
+    </div>
+    <div class="row justify-content-between">
+        <label class="col-sm-5">Protein (g)</label>
+        <label class="col-sm-5">Fat (g)</label>
+    </div>
+    <div class="row justify-content-between">
+        @Html.TextBoxFor(x => x.Protein, new { @class = "col-sm-5 pl-1", @placeholder = $"{Model.Protein}" })
+        @Html.TextBoxFor(x => x.Fat, new { @class = "col-sm-5 pl-1", @placeholder = $"{Model.Fat}" })
+    </div>
+    <div class="row justify-content-between">
+        <label class="col-sm-5">Salt (g)</label>
+        <label class="col-sm-5">Sugar (g)</label>
+    </div>
+    <div class="row justify-content-between">
+        @Html.TextBoxFor(x => x.Salt, new { @class = "col-sm-5 pl-1", @placeholder = $"{Model.Salt}" })
+        @Html.TextBoxFor(x => x.Sugar, new { @class = "col-sm-5 pl-1", @placeholder = $"{Model.Sugar}" })
+    </div>
+    <div class="row justify-content-between">
+        <label class="col-sm-5">Stock</label>
+    </div>
+    <div class="row justify-content-between">
+        @Html.TextBoxFor(x => x.NumberInStock, new { @class = "col-sm-5 pl-1", @placeholder = $"{Model.NumberInStock}" })
+    </div>
+    <div class="row">
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </div>
 </form>
 

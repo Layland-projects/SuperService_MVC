@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using SuperService_BackEnd;
 using SuperService_BackEnd.ServiceUtilities;
 using SuperService_MVC.Helpers;
+using SuperService_MVC.Models;
 
 namespace SuperService_MVC.Controllers
 {
@@ -26,6 +27,11 @@ namespace SuperService_MVC.Controllers
         public IActionResult Edit(int id)
         {
             return View(_helper.GetIngredientViewModel(id));
+        }
+        [HttpPost]
+        public IActionResult UpdateRecord(IngredientViewModel vm)
+        {
+            return RedirectToRoute("default");
         }
     }
 }

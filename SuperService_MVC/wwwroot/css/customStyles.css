@@ -10,3 +10,8 @@ a:hover {
 .nav-item.active {
     background-color: #711d85;
 }
+form label.col-sm-5 {
+    padding-left: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+}
