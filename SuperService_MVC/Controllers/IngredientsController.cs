@@ -29,9 +29,14 @@ namespace SuperService_MVC.Controllers
             return View(_helper.GetIngredientViewModel(id));
         }
         [HttpPost]
-        public IActionResult UpdateRecord(IngredientViewModel vm)
+        public IActionResult Edit(IngredientViewModel vm)
         {
-            return RedirectToRoute("default");
+            if (!ModelState.IsValid)
+            {
+                return View(vm);
+            }
+            _helper.UpdateIngredientFromViewModel(vm);
+            return RedirectToRoute("Ingredients");
         }
     }
 }

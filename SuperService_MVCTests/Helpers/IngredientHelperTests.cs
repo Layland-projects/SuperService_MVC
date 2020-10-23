@@ -7,6 +7,7 @@ using Moq;
 using SuperService_BackEnd.Interfaces;
 using SuperService_BackEnd.Models;
 using System.Linq;
+using SuperService_MVC.Models;
 
 namespace SuperService_MVC.Helpers.Tests
 {
@@ -29,6 +30,14 @@ namespace SuperService_MVC.Helpers.Tests
             Assert.That(sut[0].NumberInStock, Is.EqualTo(1));
             Assert.That(sut[0].Salt, Is.EqualTo(1));
             Assert.That(sut[0].Sugar, Is.EqualTo(1));
+        }
+        [Test]
+        public void UpdateIngredientFromViewModel()
+        {
+            var service = new Mock<IIngredientService>(MockBehavior.Strict);
+            service.Setup(s => s.UpdateIngredient(new Ingredient { IngredientID = 1, Calories = 100, Carbohydrates = 1, Protein = 1, Fat = 1, Name = "Test", NumberInStock = 1, Salt = 1, Sugar = 1 }));
+            var helper = new IngredientHelper(service.Object);
+            helper.UpdateIngredientFromViewModel(new IngredientViewModel { IngredientID = 1, Calories = 100, Carbohydrates = 1, Protein = 1, Fat = 1, Name = "Test", NumberInStock = 1, Salt = 1, Sugar = 1 });
         }
     }
 }

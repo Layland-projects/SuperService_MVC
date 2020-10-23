@@ -27,6 +27,11 @@ namespace SuperService_MVC.Helpers
             return ConvertIngredientToViewModel(_serv.GetIngredientByID(id));
         }
 
+
+        public void UpdateIngredientFromViewModel(IngredientViewModel vm)
+        {
+            _serv.UpdateIngredient(ConvertViewModelToIngredient(vm));
+        }
         IngredientViewModel ConvertIngredientToViewModel(Ingredient ingredient)
         {
             var vm = new IngredientViewModel();
@@ -38,6 +43,19 @@ namespace SuperService_MVC.Helpers
                 }
             }
             return vm;
+        }
+
+        Ingredient ConvertViewModelToIngredient(IngredientViewModel vm)
+        {
+            var ing = new Ingredient();
+            foreach (var prop in ing.GetType().GetProperties())
+            {
+                if (prop.CanWrite && prop.CanRead)
+                {
+                    prop.SetValue(ing, prop.GetValue(vm));
+                }
+            }
+            return ing;
         }
     }
 }

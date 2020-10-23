@@ -31,10 +31,10 @@
                     <td><div>@ingredient.Name</div></td>
                     <td><div class="text-center"><i class="fas @GetIconCSSForIngredient(ingredient)"></i></div></td>
                     <td class="text-right">
-                        <a asp-action="Edit" asp-route-id="@ingredient.IngredientID">
+                        <a asp-action="Edit" asp-route-id="@ingredient.IngredientID" title="Edit">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a>
+                        <a href="#" title="Delete">
                             <i class="fas fa-trash"></i>
                         </a>
                     </td>

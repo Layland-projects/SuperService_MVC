@@ -2,7 +2,8 @@
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var nameEdit = false;
+    var numericValidationMessage = "Value must be numeric and none negative";
+    var stringValidationMessage = "Allowed special characters: - . , : ! ? &";
     var modelProperties = Model.GetType().GetProperties().Where(x => x.CanWrite).OrderBy(x => x.Name).ToList();
     var modelBlacklist = new[] { "Name" };
     foreach (var item in modelBlacklist)
@@ -13,17 +14,20 @@
 <head>
     <script src="~/js/Scripts/Ingredients/Edit.js"></script>
 </head>
-<form asp-action="UpdateRecord">
+<form asp-action="Edit">
     <div class="row">
         <h1 id="HeaderDisplay">@Model.Name</h1>
         <h2 id="HeaderEditContainer" hidden="hidden">
-            @Html.TextBoxFor(x => x.Name, new { @id = "HeaderEdit", @class = "pb-0 mb-0", @name = "test" })
+            @Html.TextBoxFor(x => x.Name, new { @id = "HeaderEdit", @class = "pb-0 mb-0" })
         </h2>
-        <div class="">
+        <div>
             <a class="" id="HeaderToggle" href="#">
                 <i class="fas fa-pencil-alt align-bottom mt-4 ml-1"></i>
             </a>
         </div>
+    </div>
+    <div class="row">
+        @Html.ValidationMessageFor(x => x.Name, stringValidationMessage, new { @class = "validation-err", @id = "HeaderEditValidation", @hidden = "hidden" })
     </div>
     @Html.HiddenFor(x => x.IngredientID)
     <div class="row justify-content-between">
@@ -35,12 +39,20 @@
         @Html.TextBoxFor(x => x.Carbohydrates, new { @class = "col-sm-5 pl-1", @placeholder = $"{Model.Carbohydrates}" })
     </div>
     <div class="row justify-content-between">
+        @Html.ValidationMessageFor(x => x.Calories, numericValidationMessage, new { @class = "validation-err", @id = "CaloriesValidation", @hidden = "hidden" })
+        @Html.ValidationMessageFor(x => x.Carbohydrates, numericValidationMessage, new { @class = "validation-err", @id = "CarbohydratesValidation", @hidden = "hidden" })
+    </div>
+    <div class="row justify-content-between">
         <label class="col-sm-5">Protein (g)</label>
         <label class="col-sm-5">Fat (g)</label>
     </div>
     <div class="row justify-content-between">
         @Html.TextBoxFor(x => x.Protein, new { @class = "col-sm-5 pl-1", @placeholder = $"{Model.Protein}" })
         @Html.TextBoxFor(x => x.Fat, new { @class = "col-sm-5 pl-1", @placeholder = $"{Model.Fat}" })
+    </div>
+    <div class="row justify-content-between">
+        @Html.ValidationMessageFor(x => x.Protein, numericValidationMessage, new { @class = "validation-err", @id = "ProteinValidation", @hidden = "hidden" })
+        @Html.ValidationMessageFor(x => x.Fat, numericValidationMessage, new { @class = "validation-err", @id = "FatValidation", @hidden = "hidden" })
     </div>
     <div class="row justify-content-between">
         <label class="col-sm-5">Salt (g)</label>
@@ -51,10 +63,17 @@
         @Html.TextBoxFor(x => x.Sugar, new { @class = "col-sm-5 pl-1", @placeholder = $"{Model.Sugar}" })
     </div>
     <div class="row justify-content-between">
+        @Html.ValidationMessageFor(x => x.Salt, numericValidationMessage, new { @class = "validation-err", @id = "SaltValidation", @hidden = "hidden" })
+        @Html.ValidationMessageFor(x => x.Sugar, numericValidationMessage, new { @class = "validation-err", @id = "SugarValidation", @hidden = "hidden" })
+    </div>
+    <div class="row justify-content-between">
         <label class="col-sm-5">Stock</label>
     </div>
     <div class="row justify-content-between">
         @Html.TextBoxFor(x => x.NumberInStock, new { @class = "col-sm-5 pl-1", @placeholder = $"{Model.NumberInStock}" })
+    </div>
+    <div class="row justify-content-between">
+        @Html.ValidationMessageFor(x => x.NumberInStock, numericValidationMessage, new { @class = "validation-err", @id = "NumberInStockValidation", @hidden = "hidden" })
     </div>
     <div class="row">
         <button type="submit" class="btn btn-primary mt-2">Submit</button>

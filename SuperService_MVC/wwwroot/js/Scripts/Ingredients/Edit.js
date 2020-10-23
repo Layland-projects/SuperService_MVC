@@ -6,6 +6,7 @@
 
     //Todo: Add form validation function
     $("form input:not([id=HeaderEdit],[id=IngredientID])").on("keyup", validateNumericInput);
+    $("#HeaderEdit").on("keyup", validateStringInput);
 });
 toggleHeader = function () {
     if ($("#HeaderDisplay").attr("hidden") === "hidden") {
@@ -22,9 +23,34 @@ updateHeader = function () {
     $("#HeaderDisplay").text(value);
 }
 validateNumericInput = function () {
-    //todo: implement method to check for valid input on field
-    //
-    // if invalid, give css class with red border
-    // disable submit button
-
+    var exp = /^[0-9]+\.?[0-9]*$/;
+    let valItem = $("#" + this.id + "Validation");
+    if (!exp.test(this.value)) {
+        valItem.attr("hidden", null);
+        $(this).addClass("validation-err");
+        $("form button[type=submit]").attr("disabled", "disabled");
+    }
+    else {
+        valItem.attr("hidden", "hidden");
+        $(this).removeClass("validation-err");
+    }
+    if ($("input.validation-err").length === 0) {
+        $("form button[type=submit]").attr("disabled", null);
+    }
+}
+validateStringInput = function () {
+    var exp = /^\S[\w:,!&? -]*$/;
+    let valItem = $("#" + this.id + "Validation");
+    if (!exp.test(this.value) || this.value.lastIndexOf(" ") === (this.value.length - 1)) {
+        valItem.attr("hidden", null);
+        $(this).addClass("validation-err");
+        $("form button[type=submit]").attr("disabled", "disabled");
+    }
+    else {
+        valItem.attr("hidden", "hidden");
+        $(this).removeClass("validation-err");
+    }
+    if ($("input.validation-err").length === 0) {
+        $("form button[type=submit]").attr("disabled", null);
+    }
 }
