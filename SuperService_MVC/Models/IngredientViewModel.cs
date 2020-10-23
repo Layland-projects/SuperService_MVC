@@ -9,6 +9,5 @@ namespace SuperService_MVC.Models
     public class IngredientViewModel : Ingredient
     {
         public bool IsInStock => NumberInStock > 0;
-        public int deleteMe { get; set; }
     }
 }

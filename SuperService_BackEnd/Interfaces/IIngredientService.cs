@@ -13,5 +13,6 @@ namespace SuperService_BackEnd.Interfaces
         void IncrementStockForIngredient(Ingredient ingredient);
         void RemoveIngredient(Ingredient ingredient);
         void UpdateIngredient(Ingredient ingredient);
+        void DeleteIngredient(int id);
     }
 }

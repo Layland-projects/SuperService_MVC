@@ -39,5 +39,14 @@ namespace SuperService_MVC.Helpers.Tests
             var helper = new IngredientHelper(service.Object);
             helper.UpdateIngredientFromViewModel(new IngredientViewModel { IngredientID = 1, Calories = 100, Carbohydrates = 1, Protein = 1, Fat = 1, Name = "Test", NumberInStock = 1, Salt = 1, Sugar = 1 });
         }
+
+        [Test()]
+        public void AddIngredientFromViewModelTest()
+        {
+            var service = new Mock<IIngredientService>(MockBehavior.Strict);
+            service.Setup(s => s.AddNewIngredient(new Ingredient { IngredientID = 1, Calories = 100, Carbohydrates = 1, Protein = 1, Fat = 1, Name = "Test", NumberInStock = 1, Salt = 1, Sugar = 1 }));
+            var helper = new IngredientHelper(service.Object);
+            helper.AddIngredientFromViewModel(new IngredientViewModel { IngredientID = 1, Calories = 100, Carbohydrates = 1, Protein = 1, Fat = 1, Name = "Test", NumberInStock = 1, Salt = 1, Sugar = 1 });
+        }
     }
 }

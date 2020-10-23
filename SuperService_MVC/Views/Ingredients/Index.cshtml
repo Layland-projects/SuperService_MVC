@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Ingredients";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    int rowCounter = 1;
     string GetIconCSSForIngredient(IngredientViewModel vm)
     {
         return vm.IsInStock ? "fa-check-circle" : "fa-times-circle";
@@ -11,35 +11,64 @@
 <head>
     <script src="~/js/Scripts/Ingredients/index.js"></script>
 </head>
-
-<h1 class="row">Ingredients</h1>
-<div class="row">
-    <table class="table table-striped table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th class="text-center"><div>ID</div></th>
-                <th class="text-center"><div>Name</div></th>
-                <th class="text-center"><div>In Stock</div></th>
-                <th class="text-center"><div>Actions</div></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var ingredient in Model)
-            {
+<body>
+    <div class="row justify-content-end pl-0">
+        <h1 class="col pl-0">Ingredients</h1>
+        <a class="btn btn-primary col-sm-1 mb-2 mt-2" href="/Ingredients/New">
+            <i class="fas fa-plus-circle pr-1"></i>
+            New
+        </a>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
                 <tr>
-                    <td><div>@ingredient.IngredientID</div></td>
-                    <td><div>@ingredient.Name</div></td>
-                    <td><div class="text-center"><i class="fas @GetIconCSSForIngredient(ingredient)"></i></div></td>
-                    <td class="text-right">
-                        <a asp-action="Edit" asp-route-id="@ingredient.IngredientID" title="Edit">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a href="#" title="Delete">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                    </td>
+                    <th class="text-center"><div>#</div></th>
+                    <th class="text-center"><div>Name</div></th>
+                    <th class="text-center"><div>In Stock</div></th>
+                    <th class="text-center"><div>Actions</div></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                @foreach (var ingredient in Model)
+                {
+                    <tr>
+                        <td><div>@rowCounter</div></td>
+                        <td><div>@ingredient.Name</div></td>
+                        <td><div class="text-center"><i class="fas @GetIconCSSForIngredient(ingredient)"></i></div></td>
+                        <td class="text-right">
+                            <a asp-action="Edit" asp-route-id="@ingredient.IngredientID" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a data-id="@ingredient.IngredientID" data-name="@ingredient.Name" data-target="#DeleteModal" data-toggle="modal" href="_blank" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    rowCounter++;
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!--Delete Modal-->
+    <div class="modal fade" id="DeleteModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="DeleteModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    <button id="DeleteModalDelete" type="button" class="btn btn-danger" href="Ingredients/Delete/">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

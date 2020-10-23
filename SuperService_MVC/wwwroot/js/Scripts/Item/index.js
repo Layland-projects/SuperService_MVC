@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $('.active').removeClass('active');
-    $('#IngredientsNav').addClass('active');
+    $('#ItemsNav').addClass('active');
     $("#DeleteModal").on("show.bs.modal", function (event) {
         onDeleteModalShow(event);
     });

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SuperService_BackEnd.Interfaces;
 using SuperService_BackEnd.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace SuperService_BackEnd.ServiceUtilities
 {
-    public class ItemService
+    public class ItemService : IItemService
     {
         SuperServiceContext _db = new SuperServiceContext();
         public ItemService() { }

@@ -9,6 +9,7 @@ a:hover {
 }
 .nav-item.active {
     background-color: #711d85;
+    border-radius: 0.25rem;
 }
 form label.col-sm-5 {
     padding-left: 0;

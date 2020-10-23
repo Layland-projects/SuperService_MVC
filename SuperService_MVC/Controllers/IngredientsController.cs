@@ -38,5 +38,25 @@ namespace SuperService_MVC.Controllers
             _helper.UpdateIngredientFromViewModel(vm);
             return RedirectToRoute("Ingredients");
         }
+        public IActionResult New()
+        {
+            return View(new IngredientViewModel());
+        }
+        [HttpPost]
+        public IActionResult New(IngredientViewModel vm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(vm);
+            }
+            _helper.AddIngredientFromViewModel(vm);
+            return RedirectToRoute("Ingredients");
+        }
+        public IActionResult Delete(int id)
+        {
+            _helper.DeleteIngredienFromId(id);
+            return RedirectToRoute("Ingredients");
+        }
+
     }
 }

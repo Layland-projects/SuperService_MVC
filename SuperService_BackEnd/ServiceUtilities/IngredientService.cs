@@ -71,5 +71,11 @@ namespace SuperService_BackEnd.ServiceUtilities
             }
             _db.SaveChanges();
         }
+
+        public void DeleteIngredient(int id)
+        {
+            _db.RemoveRange(_db.Ingredients.Where(x => x.IngredientID == id));
+            _db.SaveChanges();
+        }
     }
 }
