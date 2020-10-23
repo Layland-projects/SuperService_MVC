@@ -1,0 +1,45 @@
+﻿@model SuperService_MVC.Models.ItemViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var numericValidationMessage = "Value must be numeric and none negative";
+    var stringValidationMessage = "Allowed special characters: - . , : ! ? &";
+    var formattedCost = string.Format("{0:0.00}", Model.Cost);
+}
+<head>
+    <script src="~/js/Scripts/Item/Edit.js"></script>
+</head>
+<form asp-action="Edit">
+    <div class="row">
+        <h1 id="HeaderDisplay">@Model.Name</h1>
+        <h2 id="HeaderEditContainer" hidden="hidden">
+            @Html.TextBoxFor(x => x.Name, new { @id = "HeaderEdit", @class = "pb-0 mb-0" })
+        </h2>
+        <div>
+            <a class="" id="HeaderToggle" href="#">
+                <i class="fas fa-pencil-alt align-bottom mt-4 ml-1"></i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        @Html.ValidationMessageFor(x => x.Name, stringValidationMessage, new { @class = "validation-err", @id = "HeaderEditValidation", @hidden = "hidden" })
+    </div>
+    @Html.HiddenFor(x => x.ItemID)
+    @Html.HiddenFor(x => x.ItemIngredients)
+    <div class="row justify-content-between">
+        <label class="col-sm-5">Ingredients</label>
+        <label class="col-sm-5">Cost</label>
+    </div>
+    <div class="row justify-content-between">
+        @Html.ListBoxFor(x => x.IngredientsSelected, Model.IngredientsDropDown)
+        @Html.TextBoxFor(x => x.Cost, formattedCost, new { @class = "col-sm-5 pl-1", @placeholder = $"{Model.Cost}" })
+    </div>
+    <div class="row justify-content-end">
+        @*@Html.ValidationMessageFor(x => x.Calories, numericValidationMessage, new { @class = "validation-err", @id = "CaloriesValidation", @hidden = "hidden" })*@
+        @Html.ValidationMessageFor(x => x.Carbohydrates, numericValidationMessage, new { @class = "validation-err", @id = "CarbohydratesValidation", @hidden = "hidden" })
+    </div>
+    <div class="row">
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </div>
+</form>
+

@@ -9,5 +9,7 @@ namespace SuperService_BackEnd.Interfaces
         IEnumerable<Item> GetAllItems();
         Item GetItemByID(int id);
         void RemoveItem(Item item);
+        void UpdateItem(Item updatedItem);
+        void UpdateItemIngredientsForItemId(int itemID, List<ItemIngredients> itemIngredients);
     }
 }

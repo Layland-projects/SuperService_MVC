@@ -1,4 +1,5 @@
-﻿using SuperService_BackEnd.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using SuperService_BackEnd.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,8 @@ namespace SuperService_MVC.Models
 {
     public class ItemViewModel : Item
     {
+        public IList<SelectListItem> IngredientsDropDown { get; set; }
+        public IList<string> IngredientsSelected { get; set; }
         public string CostAsCurrency => Cost.ToString("C");
         public string FormattedCalories => $"{Calories}kcal";
         public string FormattedProtein => $"{Math.Round(Protein, 2)}g";

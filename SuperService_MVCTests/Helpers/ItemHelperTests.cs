@@ -26,7 +26,7 @@ namespace SuperService_MVC.Helpers.Tests
             dummyItem.ItemIngredients = new List<ItemIngredients> { dummyItemIng1, dummyItemIng2, dummyItemIng3 };
             var service = new Mock<IItemService>();
             service.Setup(x => x.GetAllItems()).Returns(new List<Item> { dummyItem });
-            var helper = new ItemHelper(service.Object);
+            var helper = new ItemHelper(service.Object, new Mock<IIngredientService>().Object);
             var vms = helper.GetAllItemViewModels();
             Assert.That(vms.ToList(), Has.Count.GreaterThan(0));
         }

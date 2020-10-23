@@ -55,13 +55,17 @@ namespace SuperService_MVC
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute(
-                    name: "IngredientsEdit",
-                    pattern: "Ingredients/Edit/{id}");
+                //endpoints.MapControllerRoute(
+                //    name: "IngredientsEdit",
+                //    pattern: "Ingredients/Edit/{id}");
                 endpoints.MapControllerRoute(
                     name: "Ingredients",
                     pattern: "Ingredients/Index");
+                endpoints.MapControllerRoute(
+                    name: "Items",
+                    pattern: "Items/Index");
             });
         }
+        
     }
 }

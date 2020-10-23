@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $(".active").removeClass('active');
-    $("#IngredientsNav").addClass('active');
+    $("#ItemsNav").addClass('active');
     $("#HeaderToggle").on("click", toggleHeader);
     $("#HeaderEdit").on("keyup", updateHeader);
 
@@ -42,7 +42,7 @@ validateNumericInput = function (exp, elem) {
     }
 }
 validateStringInput = function () {
-    let exp = /^\S[\w:,!&? -]*$/;
+    let exp = /^\S[\w:,!&? '-]*$/;
     let valItem = $("#" + this.id + "Validation");
     if (!exp.test(this.value) || this.value.lastIndexOf(" ") === (this.value.length - 1)) {
         valItem.attr("hidden", null);
