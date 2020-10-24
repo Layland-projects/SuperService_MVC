@@ -60,7 +60,7 @@ namespace SuperService_MVC.api
             };
 
             var ings = new List<Models.Ingredient>();
-            foreach (var ingredient in vm.ItemIngredients)
+            foreach (var ingredient in vm.ItemIngredients.OrderBy(x => x.Ingredient.Name))
             {
                 var i = ingredient.Ingredient;
                 ings.Add(new Models.Ingredient
