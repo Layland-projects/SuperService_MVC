@@ -1,19 +1,19 @@
 ﻿@model SuperService_MVC.Models.ItemViewModel
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var numericValidationMessage = "Value must be numeric and none negative";
     var stringValidationMessage = "Allowed special characters: - . , : ! ? &";
     var formattedCost = string.Format("{0:0.00}", Model.Cost);
 }
 <head>
-    <script src="~/js/Scripts/Item/Edit.js"></script>
+    <script src="~/js/Scripts/Item/New.js"></script>
 </head>
-<form asp-action="Edit">
-    <div class="row">
-        <h1 id="HeaderDisplay">@Model.Name</h1>
-        <h2 id="HeaderEditContainer" hidden="hidden">
-            @Html.TextBoxFor(x => x.Name, new { @id = "HeaderEdit", @class = "pb-0 mb-0"})
+<form asp-action="New">
+    <div class="row input-group">
+        <h1 id="HeaderDisplay" hidden="hidden">@Model.Name</h1>
+        <h2 id="HeaderEditContainer">
+            @Html.TextBoxFor(x => x.Name, new { @id = "HeaderEdit", @class = "form-control pb-0 mb-0" })
         </h2>
         <div>
             <a class="" id="HeaderToggle" href="#">
@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="row">
-        @Html.ValidationMessageFor(x => x.Name, stringValidationMessage, new { @class = "validation-err", @id = "HeaderEditValidation", @hidden = "hidden" })
+        @Html.ValidationMessageFor(x => x.Name, stringValidationMessage, new { @class = "validation-err", @id = "HeaderEditValidation"})
     </div>
     <hr class="row solid" />
     @Html.HiddenFor(x => x.ItemID)
@@ -40,13 +40,11 @@
                 <span class="input-group-text form-control">£</span>
             </div>
             @Html.TextBoxFor(x => x.Cost, formattedCost, new { @class = "form-control", @placeholder = $"{Model.Cost}" })
-            <div class="input-group justify-content-end">
-                @Html.ValidationMessageFor(x => x.Cost, numericValidationMessage, new { @class = "validation-err", @id = "CostValidation", @hidden = "hidden" })
-
-            </div>
         </div>
     </div>
     <div class="row justify-content-end">
+        @Html.ValidationMessageFor(x => x.IngredientsSelected, numericValidationMessage, new { @class = "validation-err", @id = "IngredientsSelectedValidation", @hidden = "hidden" })
+        @Html.ValidationMessageFor(x => x.Cost, numericValidationMessage, new { @class = "validation-err", @id = "CostValidation", @hidden = "hidden" })
     </div>
     <div class="row">
         <button type="submit" class="btn btn-primary mt-2">Submit</button>

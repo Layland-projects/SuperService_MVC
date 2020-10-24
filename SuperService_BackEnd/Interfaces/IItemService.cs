@@ -5,11 +5,11 @@ namespace SuperService_BackEnd.Interfaces
 {
     public interface IItemService
     {
-        void AddNewItem(Item item);
+        int AddNewItem(Item item);
         IEnumerable<Item> GetAllItems();
         Item GetItemByID(int id);
         void RemoveItem(Item item);
         void UpdateItem(Item updatedItem);
-        void UpdateItemIngredientsForItemId(int itemID, List<ItemIngredients> itemIngredients);
+        void UpdateItemIngredientsForItemId(int itemID, IList<ItemIngredients> itemIngredients);
     }
 }

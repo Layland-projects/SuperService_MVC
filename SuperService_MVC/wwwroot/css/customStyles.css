@@ -1,6 +1,7 @@
 ﻿hr.solid {
     border-top: 3px solid #343a40;
-}
+    margin-right: 1rem;
+}   
 a {
     color: #343a40;
 }
@@ -29,4 +30,10 @@ input.validation-err {
     outline-style: none;
     outline-offset: 0;
     outline-width: 0;
+}
+.custom-select {
+    padding-left: .75em;
+}
+.form-control {
+    border-radius: 0.25rem;
 }

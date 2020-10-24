@@ -7,7 +7,7 @@ namespace SuperService_MVC.Helpers
 {
     public class CommonHelpers
     {
-        public static T ConvertIngredientToViewModel<T>(object obj) where T : new()
+        public static T ConvertModelToViewModel<T>(object obj) where T : new()
         {
             var o = new T();
             foreach (var prop in obj.GetType().GetProperties())

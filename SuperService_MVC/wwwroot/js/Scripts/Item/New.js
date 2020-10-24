@@ -1,12 +1,11 @@
 ﻿$(document).ready(function () {
     $(".active").removeClass('active');
     $("#ItemsNav").addClass('active');
+    $("#HeaderToggle").on("click", toggleHeader);
+    $("#HeaderEdit").on("keyup", updateHeader);
     $(document).on("keydown", "form", function (event) {
         return event.key !== "Enter";
     });
-    $("#HeaderToggle").on("click", toggleHeader);
-    $("#HeaderEdit").on("keyup", updateHeader);
-
     $("#Cost").on("keypress", function (event) {
         preventMoreThan2DP(event, this)
     });

@@ -55,26 +55,36 @@ namespace SuperService_MVC.Helpers
             return list;
         }
 
+        public void AddNewItemFromViewModel(ItemViewModel vm)
+        {
+            var itemId = _itemServ.AddNewItem(new Item { Name = vm.Name, Cost = vm.Cost });
+            _itemServ.UpdateItemIngredientsForItemId(itemId, CreateItemIngredientsFromSelectList(itemId, vm.IngredientsSelected).ToList());
+        }
+
         public void UpdateItemFromViewModel(ItemViewModel vm)
         {
-            var updatedItem = new Item { ItemID = vm.ItemID, Cost = vm.Cost, Name = vm.Name };
+            _itemServ.UpdateItem(new Item { ItemID = vm.ItemID, Name = vm.Name, Cost = vm.Cost });
+            _itemServ.UpdateItemIngredientsForItemId(vm.ItemID, CreateItemIngredientsFromSelectList(vm.ItemID, vm.IngredientsSelected).ToList());
+        }
+
+        IList<ItemIngredients> CreateItemIngredientsFromSelectList(int itemId, IList<string> selectedIds)
+        {
             var itemIngredients = new List<ItemIngredients>();
-            foreach (var itemID in vm.IngredientsSelected)
+            foreach (var ingredientId in selectedIds)
             {
-                itemIngredients.Add(new ItemIngredients { ItemID = vm.ItemID, IngredientID = Convert.ToInt32(itemID) });
+                itemIngredients.Add(new ItemIngredients { ItemID = itemId, IngredientID = Convert.ToInt32(ingredientId) });
             }
-            _itemServ.UpdateItem(updatedItem);
-            _itemServ.UpdateItemIngredientsForItemId(vm.ItemID, itemIngredients);
+            return itemIngredients;
         }
 
         ItemViewModel ConvertItemToViewModel(Item item)
         {
-            return CommonHelpers.ConvertIngredientToViewModel<ItemViewModel>(item);
+            return CommonHelpers.ConvertModelToViewModel<ItemViewModel>(item);
         }
 
         Item ConvertViewModelToItem(ItemViewModel vm)
         {
-            return CommonHelpers.ConvertIngredientToViewModel<Item>(vm);
+            return CommonHelpers.ConvertModelToViewModel<Item>(vm);
         }
     }
 }

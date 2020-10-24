@@ -41,13 +41,13 @@ namespace SuperService_MVC.Helpers
         }
         IngredientViewModel ConvertIngredientToViewModel(Ingredient ingredient)
         {
-            var vm = CommonHelpers.ConvertIngredientToViewModel<IngredientViewModel>(ingredient);
+            var vm = CommonHelpers.ConvertModelToViewModel<IngredientViewModel>(ingredient);
             return vm;
         }
 
         Ingredient ConvertViewModelToIngredient(IngredientViewModel vm)
         {
-            var ing = CommonHelpers.ConvertIngredientToViewModel<Ingredient>(vm);
+            var ing = CommonHelpers.ConvertModelToViewModel<Ingredient>(vm);
             return ing;
         }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SuperService_BackEnd;
+using SuperService_BackEnd.Models;
 using SuperService_BackEnd.ServiceUtilities;
 using SuperService_MVC.Helpers;
 using SuperService_MVC.Models;
@@ -39,6 +40,24 @@ namespace SuperService_MVC.Controllers
                 return View(vm);
             }
             _itemHelper.UpdateItemFromViewModel(vm);
+            return RedirectToRoute("Items");
+        }
+        public IActionResult New()
+        {
+            var model = new ItemViewModel { ItemIngredients = new List<ItemIngredients>() };
+            var ingredients = model.ItemIngredients.Select(x => x.Ingredient.IngredientID.ToString()).ToList();
+            model.IngredientsDropDown = _itemHelper.GenerateIngredientsDropDown(model.ItemIngredients.Select(x => x.Ingredient));
+            model.IngredientsSelected = ingredients;
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult New(ItemViewModel vm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(vm);
+            }
+            _itemHelper.AddNewItemFromViewModel(vm);
             return RedirectToRoute("Items");
         }
     }

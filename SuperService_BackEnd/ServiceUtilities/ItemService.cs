@@ -28,10 +28,11 @@ namespace SuperService_BackEnd.ServiceUtilities
             return GetAllItems().Where(x => x.ItemID == id).FirstOrDefault();
         }
 
-        public void AddNewItem(Item item)
+        public int AddNewItem(Item item)
         {
             _db.Items.Add(item);
             _db.SaveChanges();
+            return item.ItemID;
         }
 
         public void RemoveItem(Item item)
@@ -53,7 +54,7 @@ namespace SuperService_BackEnd.ServiceUtilities
             _db.SaveChanges();
         }
 
-        public void UpdateItemIngredientsForItemId(int itemID, List<ItemIngredients> itemIngredients)
+        public void UpdateItemIngredientsForItemId(int itemID, IList<ItemIngredients> itemIngredients)
         {
             _db.ItemIngredients.RemoveRange(_db.ItemIngredients.Where(x => x.ItemID == itemID));
             _db.SaveChanges();
