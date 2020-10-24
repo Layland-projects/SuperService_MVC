@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SuperService_MVC.Helpers.IngredientHelper">
+    <Position X="14.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAABAAAAEAAQAAAAAEBAAAAAIAAAAAI=</HashCode>
+      <FileName>Helpers\IngredientHelper.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_serv" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SuperService_MVC.Helpers.ItemHelper">
+    <Position X="14.25" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAABgAAAAAAAAAAAAAgAAIACAAAAIAAAAAASBAhI=</HashCode>
+      <FileName>Helpers\ItemHelper.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_itemServ" />
+      <Field Name="_ingHelper" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SuperService_MVC.Helpers.CommonHelpers">
+    <Position X="17.25" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Helpers\CommonHelpers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperService_BackEnd.ServiceUtilities.IngredientService">
+    <Position X="8.5" Y="0.5" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SuperService_BackEnd.ServiceUtilities.ItemService">
+    <Position X="8.5" Y="3.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="SuperService_BackEnd.Interfaces.IItemService">
+    <Position X="11" Y="3.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="SuperService_BackEnd.Interfaces.IIngredientService">
+    <Position X="11" Y="0.5" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

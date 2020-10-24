@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SuperService_MVC.Models.IngredientViewModel">
+    <Position X="13.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IngredientViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperService_BackEnd.Models.Ingredient">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="SuperService_BackEnd.Models.Item">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="SuperService_BackEnd.Models.ItemIngredients">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Ingredient" />
+      <Property Name="this" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SuperService_MVC.Models.ItemViewModel">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <Members>
+      <Property Name="FormattedCalories" Hidden="true" />
+      <Property Name="FormattedCarbs" Hidden="true" />
+      <Property Name="FormattedFat" Hidden="true" />
+      <Property Name="FormattedProtein" Hidden="true" />
+      <Property Name="FormattedSalt" Hidden="true" />
+      <Property Name="FormattedSugar" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IABIAAAAgICAICAAgAQAAgEAAAAAAIAAAAEAAAIEAAA=</HashCode>
+      <FileName>Models\ItemViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
