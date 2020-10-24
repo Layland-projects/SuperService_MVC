@@ -7,6 +7,10 @@
     {
         return vm.IsInStock ? "fa-check-circle" : "fa-times-circle";
     }
+    string GetRowCSSForIngredient(IngredientViewModel vm)
+    {
+        return vm.IsInStock ? "" : "table-danger";
+    }
 }
 <head>
     <script src="~/js/Scripts/Ingredients/index.js"></script>
@@ -32,7 +36,7 @@
             <tbody>
                 @foreach (var ingredient in Model)
                 {
-                    <tr>
+                    <tr class="@GetRowCSSForIngredient(ingredient)">
                         <td><div>@rowCounter</div></td>
                         <td><div>@ingredient.Name</div></td>
                         <td><div class="text-center"><i class="fas @GetIconCSSForIngredient(ingredient)"></i></div></td>

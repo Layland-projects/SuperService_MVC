@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SuperService_BackEnd.ServiceUtilities
 {
@@ -22,12 +23,19 @@ namespace SuperService_BackEnd.ServiceUtilities
         {
             return _db.Items.Include(x => x.ItemIngredients).ThenInclude(x => x.Ingredient).AsNoTracking().ToList();
         }
-
+        public async Task<IEnumerable<Item>> GetAllItemsAsync()
+        {
+           return await _db.Items.Include(x => x.ItemIngredients).ThenInclude(x => x.Ingredient).AsNoTracking().ToListAsync();
+        }
         public Item GetItemByID(int id)
         {
             return GetAllItems().Where(x => x.ItemID == id).FirstOrDefault();
         }
-
+        public async Task<Item> GetItemByIDAsync(int id)
+        {
+            var items = await GetAllItemsAsync();
+            return items.Where(x => x.ItemID == id).FirstOrDefault();
+        }
         public int AddNewItem(Item item)
         {
             _db.Items.Add(item);

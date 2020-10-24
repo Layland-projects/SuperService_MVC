@@ -28,7 +28,7 @@ namespace SuperService_BackEnd.Models
 
         public override bool Equals(object obj)
         {
-            foreach(var prop in this.GetType().GetProperties())
+            foreach (var prop in this.GetType().GetProperties())
             {
                 if (obj.GetType().GetProperties().Where(x => x.Name == prop.Name).Count() > 0)
                 {

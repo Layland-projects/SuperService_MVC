@@ -7,6 +7,10 @@
     {
         return item.CanOrder ? "fa-check-circle" : "fa-times-circle";
     }
+    string GetRowCSSForItem(ItemViewModel item)
+    {
+        return item.CanOrder ? "" : "table-danger";
+    }
 }
 <head>
     <script src="~/js/Scripts/Item/Index.js"></script>
@@ -37,12 +41,15 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <tr class="@GetRowCSSForItem(item)">
                         <td><div>@rowCounter</div></td>
                         <td><div>@item.Name</div></td>
                         <td><div>@item.Calories</div></td>
                         <td><div class="text-center"><i class="fas fa-check @GetIconCSSForItem(item)"></i></div></td>
                         <td class="text-right">
+                            <a data-target="#InfoModal" data-toggle="modal" href="_blank" title="More information">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
                             <a asp-action="Edit" asp-route-id="@item.ItemID" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -59,7 +66,7 @@
 
     <!--Info Modal-->
     <div class="modal fade" id="InfoModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="InfoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="InfoModalLabel">Modal title</h5>

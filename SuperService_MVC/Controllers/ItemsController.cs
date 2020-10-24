@@ -22,7 +22,7 @@ namespace SuperService_MVC.Controllers
         }
         public IActionResult Index()
         {
-            return View(_itemHelper.GetAllItemViewModels());
+            return View(_itemHelper.GetAllItemViewModels().OrderByDescending(x => x.CanOrder));
         }
         public IActionResult Edit(int id)
         {
@@ -58,6 +58,11 @@ namespace SuperService_MVC.Controllers
                 return View(vm);
             }
             _itemHelper.AddNewItemFromViewModel(vm);
+            return RedirectToRoute("Items");
+        }
+        public IActionResult Delete(int id)
+        {
+            _itemHelper.DeleteItemFromID(id);
             return RedirectToRoute("Items");
         }
     }

@@ -22,7 +22,7 @@ namespace SuperService_MVC.Controllers
         }
         public IActionResult Index() 
         {
-            return View(_helper.GetAllIngredientViewModels()); 
+            return View(_helper.GetAllIngredientViewModels().OrderByDescending(x => x.IsInStock)); 
         }
         public IActionResult Edit(int id)
         {
@@ -57,6 +57,5 @@ namespace SuperService_MVC.Controllers
             _helper.DeleteIngredienFromId(id);
             return RedirectToRoute("Ingredients");
         }
-
     }
 }

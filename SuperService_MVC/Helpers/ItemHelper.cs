@@ -23,9 +23,19 @@ namespace SuperService_MVC.Helpers
         {
             return _itemServ.GetAllItems().Select(x => ConvertItemToViewModel(x));
         }
+        public async Task<IEnumerable<ItemViewModel>> GetAllItemViewModelsAsync()
+        {
+            var items = await _itemServ.GetAllItemsAsync();
+            return items.Select(x => ConvertItemToViewModel(x));
+        }
         public ItemViewModel GetItemViewModelFromId(int id)
         {
             return ConvertItemToViewModel(_itemServ.GetItemByID(id));
+        }
+        public async Task<ItemViewModel> GetItemViewModelFromIdAsync(int id)
+        {
+            var item = await _itemServ.GetItemByIDAsync(id);
+            return ConvertItemToViewModel(item);
         }
         public IList<SelectListItem> GenerateIngredientsDropDown(IEnumerable<Ingredient> ingredients)
         {
@@ -65,6 +75,11 @@ namespace SuperService_MVC.Helpers
         {
             _itemServ.UpdateItem(new Item { ItemID = vm.ItemID, Name = vm.Name, Cost = vm.Cost });
             _itemServ.UpdateItemIngredientsForItemId(vm.ItemID, CreateItemIngredientsFromSelectList(vm.ItemID, vm.IngredientsSelected).ToList());
+        }
+
+        internal void DeleteItemFromID(int id)
+        {
+            _itemServ.RemoveItem(new Item { ItemID = id });
         }
 
         IList<ItemIngredients> CreateItemIngredientsFromSelectList(int itemId, IList<string> selectedIds)
