@@ -8,11 +8,11 @@
 <head>
     <script src="~/js/Scripts/Ingredients/New.js"></script>
 </head>
-<form asp-action="New">
+<form asp-action="New" autocomplete="off">
     <div class="row input-group">
         <h1 id="HeaderDisplay" hidden="hidden">@Model.Name</h1>
         <h2 id="HeaderEditContainer">
-            @Html.TextBoxFor(x => x.Name, new { @id = "HeaderEdit", @class = "pb-0 mb-0 form-control", @placeholder = "Name"})
+            @Html.TextBoxFor(x => x.Name, new { @id = "HeaderEdit", @class = "validation-err pb-0 mb-0 form-control", @placeholder = "Name"})
         </h2>
         <div>
             <a class="" id="HeaderToggle" href="#">
@@ -71,7 +71,7 @@
         @Html.ValidationMessageFor(x => x.NumberInStock, numericValidationMessage, new { @class = "validation-err", @id = "NumberInStockValidation", @hidden = "hidden" })
     </div>
     <div class="row">
-        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        <button type="submit" class="btn btn-primary mt-2" disabled="disabled">Submit</button>
     </div>
 </form>
 

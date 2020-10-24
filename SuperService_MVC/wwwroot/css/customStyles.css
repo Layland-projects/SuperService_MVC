@@ -20,7 +20,7 @@ form label.col-sm-5 {
 span.validation-err{
     color: #ae1414;
 }
-input.validation-err {
+input.validation-err, select.validation-err {
     border-style: solid;
     border-width: 2px;
     border-color: #ae1414;

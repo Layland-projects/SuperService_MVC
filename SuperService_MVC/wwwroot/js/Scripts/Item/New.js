@@ -6,6 +6,17 @@
     $(document).on("keydown", "form", function (event) {
         return event.key !== "Enter";
     });
+    $("#IngredientsSelected").on("click", function () {
+        if ($(this).children(":selected").length > 0) {
+
+            $("#" + this.id + "Validation").attr("hidden", "hidden");
+            $(this).removeClass("validation-err");
+            $("form button[type=submit]").attr("disabled", "disabled");
+        }
+        if ($("input.validation-err, select.validation-err").length === 0) {
+            $("form button[type=submit]").attr("disabled", null);
+        }
+    });
     $("#Cost").on("keypress", function (event) {
         preventMoreThan2DP(event, this)
     });
@@ -84,7 +95,7 @@ validateStringInput = function () {
         valItem.attr("hidden", "hidden");
         $(this).removeClass("validation-err");
     }
-    if ($("input.validation-err").length === 0) {
+    if ($("input.validation-err, select.validation-err").length === 0) {
         $("form button[type=submit]").attr("disabled", null);
     }
 }

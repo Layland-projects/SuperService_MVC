@@ -9,11 +9,11 @@
 <head>
     <script src="~/js/Scripts/Item/New.js"></script>
 </head>
-<form asp-action="New">
+<form asp-action="New" autocomplete="off">
     <div class="row input-group">
         <h1 id="HeaderDisplay" hidden="hidden">@Model.Name</h1>
         <h2 id="HeaderEditContainer">
-            @Html.TextBoxFor(x => x.Name, new { @id = "HeaderEdit", @class = "form-control pb-0 mb-0" })
+            @Html.TextBoxFor(x => x.Name, new { @id = "HeaderEdit", @class = "form-control validation-err pb-0 mb-0", @placeholder = "Name" })
         </h2>
         <div>
             <a class="" id="HeaderToggle" href="#">
@@ -33,7 +33,7 @@
     </div>
     <div class="row justify-content-between input-group">
         <div class="input-group col-sm-5 pl-0 ml-0 pr-0">
-            @Html.ListBoxFor(x => x.IngredientsSelected, Model.IngredientsDropDown, new { @class = "form-control" })
+            @Html.ListBoxFor(x => x.IngredientsSelected, Model.IngredientsDropDown, new { @class = "form-control validation-err" })
         </div>
         <div class="col-sm-5 input-group pl-0 ml-0 pr-0">
             <div class="input-group-prepend">
@@ -42,12 +42,12 @@
             @Html.TextBoxFor(x => x.Cost, formattedCost, new { @class = "form-control", @placeholder = $"{Model.Cost}" })
         </div>
     </div>
-    <div class="row justify-content-end">
-        @Html.ValidationMessageFor(x => x.IngredientsSelected, numericValidationMessage, new { @class = "validation-err", @id = "IngredientsSelectedValidation", @hidden = "hidden" })
+    <div class="row justify-content-between">
+        @Html.ValidationMessageFor(x => x.IngredientsSelected, "Please select at least one ingredient", new { @class = "validation-err", @id = "IngredientsSelectedValidation" })
         @Html.ValidationMessageFor(x => x.Cost, numericValidationMessage, new { @class = "validation-err", @id = "CostValidation", @hidden = "hidden" })
     </div>
     <div class="row">
-        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        <button type="submit" class="btn btn-primary mt-2" disabled="disabled">Submit</button>
     </div>
 </form>
 
